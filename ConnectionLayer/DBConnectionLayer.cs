@@ -5,10 +5,13 @@ using System.Configuration;
 using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Data.OleDb;
+//vecchio, se NET Framework 4.x tieni questo 
 using System.Data.SqlClient;
+// Nuovo, se siamo su NET Core/8+ questo, o manda obsoleto. Funzia comunque, ma è obsoleto.
+//using Microsoft.Data.SqlClient;
 using DataAccessLayer.Interfaces; // Microsoft.Extensions.Configuration.* NuGet
-//using System.Transactions;
-//using System.Text.Json.Serialization; <--- <°)))>< Non scommentare o tira fuori errore. Json.Serialization non esiste in .NET Framework 4.x.
+//using System.Transactions; //<--- fixed with dataisolation level e ci togliamo l'incomodo dell'incompatibilità transaction scope tra SQL e DB2. E di framework che transaction scope non lo supporta proprio.
+using System.Text.Json.Serialization; //<--- Json.Serialization non esiste in .NET Framework 4.x, quindi commenta in quel caso  <--- ma se lo passiamo con app.settings.json serve serve :3
 
 namespace DataAccessLayer.ConnectionLayer
 {
