@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
+    //può essere carino separare le interfacce per DB2 e SQL, ma per ora lascio tutto in una sola interfaccia. Time is a-tickin' <°)))><
     public interface IDBConnectionLayer
     {
         /// SQL ========================= 

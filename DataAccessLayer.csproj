@@ -6,8 +6,8 @@
 
   <ItemGroup>
     <Folder Include="Helpers\" />
-    <Folder Include="Log\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Log\" />
   </ItemGroup>
 
   <ItemGroup>

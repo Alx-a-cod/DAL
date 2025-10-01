@@ -8,7 +8,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using DataAccessLayer.Interfaces; // Microsoft.Extensions.Configuration.* NuGet
 //using System.Transactions;
-//using System.Text.Json.Serialization; <--- <°)))>< Non scommentare o tira fuori errore. Json.Serialization non esiste in .NET Framework 4.x. P.S. ma perchè sta qui ?
+//using System.Text.Json.Serialization; <--- <°)))>< Non scommentare o tira fuori errore. Json.Serialization non esiste in .NET Framework 4.x.
 
 namespace DataAccessLayer.ConnectionLayer
 {
@@ -17,10 +17,10 @@ namespace DataAccessLayer.ConnectionLayer
         private readonly string _sqlConnectionString;
         private readonly string _db2ConnectionString;
 
-        // Costruttore consigliato: passare IConfiguration (es. da host .NET Core/8)
+        // Costruttore consigliato: passa IConfiguration (es. da host .NET Core/8)
         public DbConnectionLayer(IConfiguration configuration = null, string sqlOverride = null, string db2Override = null)
         {
-            // 1) se le connection string sono state passate direttamente -> usale
+            // 1 se le connection string sono state passate direttamente -> usale
             if (!string.IsNullOrWhiteSpace(sqlOverride) && !string.IsNullOrWhiteSpace(db2Override))
             {
                 _sqlConnectionString = sqlOverride;
@@ -28,7 +28,7 @@ namespace DataAccessLayer.ConnectionLayer
                 return;
             }
 
-            // 2) se è passato IConfiguration (es. appsettings.json del host) -> legge da lì
+            // 2 se è passato IConfiguration (es. appsettings.json del host) -> legge da lì
             if (configuration != null)
             {
                 _sqlConnectionString = configuration.GetConnectionString("ConnSQLOffices")
@@ -38,7 +38,7 @@ namespace DataAccessLayer.ConnectionLayer
 
                 if (!string.IsNullOrWhiteSpace(_sqlConnectionString) && !string.IsNullOrWhiteSpace(_db2ConnectionString))
                     return;
-                // altrimenti continueremo con i fallback
+                // altrimenti continua con i fallback
             }
 
             // prova a leggere ConfigurationManager.ConnectionStrings (se App.config / .NET Framework)
@@ -93,7 +93,7 @@ namespace DataAccessLayer.ConnectionLayer
 
         #region Public SQL Methods
 
-        // apro con using per essere sicuri che si chiuda sempre
+        // apro con using per essere sicuri che si chiuda sempre, ho dispose autogestito. Però carino anche farne uno per modularizzare.
 
         public DataTable ExecuteOneSelectSQL(string query, Dictionary<string, object> parametersSQL = null)
         {
