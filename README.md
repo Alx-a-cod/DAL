@@ -30,13 +30,37 @@ Public methods allow developers to provide their own transactions if needed for 
 - **Transaction-safe operations:** Automatic `commit`/`rollback` ensures database integrity for multi-query and mixed-database operations.  
 - **Configurable connection initialization:** Handles connection sources from multiple environments (`IConfiguration`, App.config, JSON fallback, direct overrides).  
 - **Helpers Layer:** Utility classes for common operations and parameter management to ensure DRY principles.  
-- **Exception Layer:** Interface-based exceptions for clean, predictable error propagation.  
+- **Exception Layer:** Interface-based exceptions for clean, predictable error propagation.
+
+DataAccessLayer/
+│
+├── ConnectionLayer/
+│   └── DbConnectionLayer.cs      # Sealed class principale, with all CRUD e multi-query methods.
+│
+├── Interfaces/
+│   └── IDBConnectionLayer.cs     # Interface for DbConnectionLayer
+│   └── IOtherInterfaces.cs       # Placeholder for future interface (logging, helpers, etc.) <--- maybe. Could be better to keep them de-centralized for better mental order. 
+├── Log/
+│   └── ILogHelper.cs             # logging modular interface
+│   └── LogHelper.cs              # base implementation, exstensible. 
+│
+├── Exceptions/
+│   └── IDalException.cs          # Modular logging interface for DAL exceptions.
+│   └── DalException.cs           # concrete class to manage exceptions.
+│
+├── Helpers/
+│   └── DbUtils.cs                # generic utility for database (for future implementation)
+│   └── ParameterHelper.cs        # Helpers for parameters management and QoL.
+│
+├── appsettings.json              # connection configuration (optional. Mostly App.config because without i can't code the behaviour for the connection.)
+├── App.config
+└── DataAccessLayer.csproj
 
 ---
 
 ## 📍 Tech Stack ────────
 - **Language:** C# 7.3  
-- **Framework:** .NET Framework 4.7.x/4.8 and .NET Core/.NET 8  
+- **Framework:** .NET Library 2.0 for optimal implementation across all .NET from Framework to Core.   
 - **Databases:** SQL Server (`System.Data.SqlClient`), DB2 (`System.Data.OleDb` or `IBM.Data.DB2.Core`)  
 - **Configuration Management:** `App.config` for legacy, `appsettings.json` via `Microsoft.Extensions.Configuration`  
 - **Transaction Management:** `SqlTransaction` and `OleDbTransaction` with robust rollback support  
