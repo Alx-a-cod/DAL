@@ -30,8 +30,9 @@ Public methods allow developers to provide their own transactions if needed for 
 - **Transaction-safe operations:** Automatic `commit`/`rollback` ensures database integrity for multi-query and mixed-database operations.  
 - **Configurable connection initialization:** Handles connection sources from multiple environments (`IConfiguration`, App.config, JSON fallback, direct overrides).  
 - **Helpers Layer:** Utility classes for common operations and parameter management to ensure DRY principles.  
-- **Exception Layer:** Interface-based exceptions for clean, predictable error propagation.
+- **Exception Layer:** Interface-based exceptions for clean, predictable error propagation
 
+```
 DataAccessLayer/
 │
 ├── ConnectionLayer/
@@ -55,7 +56,7 @@ DataAccessLayer/
 ├── appsettings.json              # connection configuration (optional. Mostly App.config because without i can't code the behaviour for the connection.)
 ├── App.config
 └── DataAccessLayer.csproj
-
+```
 ---
 
 ## 📍 Tech Stack ────────
