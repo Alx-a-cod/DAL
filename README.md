@@ -14,7 +14,7 @@ The DAL is built with **extensibility and maintainability in mind**, providing i
 - **Parametrized queries:** Safe, flexible query execution using `Dictionary<string, object> parameters = null` to prevent SQL injection and support flexible, safe, and optional parameterization.  
 - **Configurable initialization:** Supports direct connection overrides, `IConfiguration` (`appsettings.json`), and legacy `App.config`.  
 - **Transaction handling:** Private methods automatically manage transactions for internal operations.  
-Public methods allow developers to provide their own transactions if needed for advanced scenarios.  
+    Public methods allow developers to provide their own transactions if needed for advanced scenarios.  
 - **Fallback & defaults:** Automatic development-friendly connection string defaults to prevent runtime errors.  
 - **Error handling & logging:** Integrated console logging with planned modular, interface-based logging system (`ILogHelper`) for project-wide use.  
 - **Helpers & Utilities:** Centralized reusable helpers (`DbUtils`, `ParameterHelper`) for query preparation, parameter handling, and database operations.  
